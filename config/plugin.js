@@ -10,9 +10,9 @@ module.exports = {
     enable: true,
     package: 'egg-cors',
   },
-  mongoose: {
+  mysql: {
     enable: true,
-    package: 'egg-mongoose',
+    package: 'egg-mysql',
   },
   jwt: {
     enable: true,

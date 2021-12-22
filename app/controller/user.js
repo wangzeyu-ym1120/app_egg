@@ -8,7 +8,7 @@ class UserController extends Controller {
     const { username, password } = ctx.request.body;
     ctx.logger.info('login-request.body', JSON.stringify(ctx.request.body));
     const loginResult = await ctx.service.user.login({ username, password });
-    ctx.logger.info('register-loginResult', loginResult);
+    ctx.logger.info('register-loginResult', JSON.stringify(loginResult));
     ctx.logger.info('=======================================================');
     ctx.body = {
       code: 0,
@@ -21,7 +21,7 @@ class UserController extends Controller {
     const { username, password } = ctx.request.body;
     ctx.logger.info('register-request.body', JSON.stringify(ctx.request.body));
     const registerResult = await ctx.service.user.register({ username, password });
-    ctx.logger.info('register-registerResult', registerResult);
+    ctx.logger.info('register-registerResult', JSON.stringify(registerResult));
     ctx.logger.info('=======================================================');
     ctx.body = {
       code: 0,
@@ -32,11 +32,36 @@ class UserController extends Controller {
   async queryUserList() {
     const { ctx } = this;
     const queryUserListResult = await ctx.service.user.queryUserList();
-    ctx.logger.info('register-queryUserListResult', queryUserListResult);
+    ctx.logger.info('queryUserList-queryUserListResult', JSON.stringify(queryUserListResult));
     ctx.logger.info('=======================================================');
     ctx.body = {
       code: 0,
       content: queryUserListResult,
+    };
+  }
+
+  getUserInfo() {
+    const { ctx } = this;
+    const { token } = ctx.request.headers;
+    if (!token) {
+      ctx.body = {
+        code: 0,
+        content: {
+          result: 1,
+          resultMessage: '缺少请求参数',
+        },
+      };
+      return;
+    }
+    const userInfo = ctx.helper.getUserInfoFromToken(token);
+    ctx.logger.info('getUserInfo-userInfo', JSON.stringify(userInfo));
+    ctx.logger.info('=======================================================');
+    ctx.body = {
+      code: 0,
+      content: {
+        result: 0,
+        userInfo,
+      },
     };
   }
 }

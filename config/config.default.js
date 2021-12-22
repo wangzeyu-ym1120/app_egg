@@ -23,7 +23,11 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1638176730027_3873';
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [ 'auther' ];
+  config.auther = {
+    enable: true,
+    ignore: [ '/login', '/register' ],
+  };
 
   config.security = {
     csrf: {
@@ -39,20 +43,22 @@ module.exports = appInfo => {
     credentials: true,
   };
 
-  config.mongoose = {
+  config.mysql = {
     client: {
-      url: 'mongodb://127.0.0.1:27017/chat',
-      options: {
-        useUnifiedTopology: true,
-      },
+      host: '127.0.0.1',
+      port: '3306',
+      user: 'root',
+      password: '123456',
+      database: 'chat',
     },
+    app: true,
+    agent: false,
   };
 
-  // config.jwt = {
-  //   secret: '123456',
-  //   igonre: [ '/api/login', '/api/regist' ],
-  //   expiresIn: '24h',
-  // };
+  config.jwt = {
+    secret: 'app_chat',
+    expiresIn: '2h',
+  };
 
   // add your user config here
   const userConfig = {
