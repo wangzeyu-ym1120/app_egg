@@ -6,7 +6,7 @@ module.exports = () => {
   exports.cluster = {
     listen: {
       port: 4000,
-      hostname: 'localhost',
+      hostname: '10.56.39.57',
     },
   };
 

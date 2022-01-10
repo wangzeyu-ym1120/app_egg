@@ -11,7 +11,8 @@
     "egg-cors": "^2.2.3",
     "egg-jwt": "^3.1.7",
     "egg-mysql": "^3.0.0",
-    "egg-scripts": "^2.11.0"
+    "egg-scripts": "^2.11.0",
+    "egg-socket.io": "^4.1.6"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -27,8 +28,8 @@
   },
   "scripts": {
     "start": "egg-scripts start --daemon --title=egg-server-app_egg --env=local",
-    "stop": "egg-scripts stop --title=egg-server-app_egg",
-    "dev": "egg-bin dev",
+    "stop": "egg-scripts stop --title=egg-server-app_egg --sticky",
+    "dev": "egg-bin dev --env=local --sticky",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",

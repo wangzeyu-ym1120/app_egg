@@ -60,6 +60,20 @@ module.exports = appInfo => {
     expiresIn: '2h',
   };
 
+  config.io = {
+    init: { }, // passed to engine.io
+    namespace: {
+      '/chat': {
+        connectionMiddleware: [ 'connection' ],
+        packetMiddleware: [],
+      },
+    },
+    // redis: {
+    //   host: '127.0.0.1',
+    //   port: 6379,
+    // },
+  };
+
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
