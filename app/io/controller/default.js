@@ -21,7 +21,9 @@ class DefaultController extends Controller {
       return;
     }
     const nsp = app.io.of('/chat');
-    nsp.emit('receiveMsg', chatModel);
+    // nsp.emit('receiveMsg', chatModel);
+    nsp.emit(to+'', chatModel);
+    nsp.emit(from+'', chatModel);
   }
 }
 
